@@ -17,8 +17,8 @@ pip install -r requirement.txt
 DB
 ├── 1.css
 ├── Read.md
-├── .json
-├── t.py
+├── .json #DB token
+├── t.py(後端在這寫)
 └── templates
     ├── 1.html
     └── 2.html
