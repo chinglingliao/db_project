@@ -11,4 +11,15 @@ pip install -r requirement.txt
 ### crtl+按網址
 - 開啟網頁
 
- ### 完成
+### 架構
+
+```
+DB
+├── 1.css
+├── Read.md
+├── .json
+├── t.py
+└── templates
+    ├── 1.html
+    └── 2.html
+```
