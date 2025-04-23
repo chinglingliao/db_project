@@ -1,6 +1,7 @@
 
 DB  PROJECT
 ==
+#### !! 建議先下在好軟體 之後會commit push才會比較方便
 ## 下載套件
 ```
 pip install -r requirement.txt
