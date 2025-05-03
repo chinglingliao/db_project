@@ -1,0 +1,64 @@
+<!-- templates/4.html -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>配對頁面</title>
+    <style>
+        body {
+            font-family: "微軟正黑體", sans-serif;
+            background-color: #fff0f5;
+            color: #333;
+            text-align: center;
+            padding: 40px;
+        }
+        h1 {
+            color: #e75480;
+        }
+        .match-card {
+            background-color: white;
+            border: 2px solid #e75480;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .match-card h2 {
+            color: #e75480;
+        }
+        .nav {
+            margin-top: 30px;
+        }
+        .nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #e75480;
+        }
+    </style>
+</head>
+<body>
+    <h1>歡迎來到配對頁面 💖</h1>
+
+    {% if session.user %}
+        <p>哈囉，{{ session.user }}！這是你今日的推薦對象：</p>
+    {% endif %}
+
+    <div class="match-card">
+        <h2>Alex</h2>
+        <p>年齡：23 歲</p>
+        <p>興趣：攝影、登山、聽 Indie 音樂</p>
+    </div>
+
+    <div class="match-card">
+        <h2>Sophia</h2>
+        <p>年齡：22 歲</p>
+        <p>興趣：咖啡店探險、畫畫、寫詩</p>
+    </div>
+
+    <div class="nav">
+        <a href="/">回首頁</a> |
+        <a href="/logout">登出</a>
+    </div>
+</body>
+</html>
