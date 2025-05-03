@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document2222</title>
+    <title>註冊帳號</title>
 </head>
 <body>
+    <h2>註冊新帳號</h2>
     
+    <form action="/signup" method="POST">
+        <label for="name">姓名：</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email：</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">密碼：</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="註冊">
+    </form>
+
+    <p>已有帳號？<a href="/login">點此登入</a></p>
 </body>
 </html>
