@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人資料</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        h2 {
+            color: #333;
+        }
+        form div {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input, select {
+            padding: 0.5rem;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #1db954;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #17a34a;
+        }
+        .error {
+            color: red;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.9/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function ProfileForm() {
+            const [name, setName] = useState("");
+            const [age, setAge] = useState("");
+            const [interests, setInterests] = useState("");
+            const [favoriteArtist, setFavoriteArtist] = useState("");
+            const [musicGenre, setMusicGenre] = useState("");
+            const [error, setError] = useState("");
+
+            // Handle form submission
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                setError("");
+
+                if (!name || !age) {
+                    setError("請填寫姓名和年齡");
+                    return;
+                }
+
+                if (isNaN(age) || age <= 0) {
+                    setError("請輸入有效的年齡");
+                    return;
+                }
+
+                try {
+                    const res = await fetch("/save_interests", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name,
+                            age: parseInt(age),
+                            interests: interests ? interests.split(",").map((s) => s.trim()) : [],
+                            favorite_artist: favoriteArtist,
+                            music_genre: musicGenre,
+                        }),
+                    });
+
+                    if (res.ok) {
+                        alert("已儲存成功，將導向配對頁面");
+                        window.location.href = "/match";
+                    } else {
+                        setError("儲存失敗，請稍後再試");
+                    }
+                } catch (err) {
+                    setError("儲存失敗，無法連接到伺服器");
+                }
+            };
+
+            return (
+                <div>
+                    <h2>編輯個人資料</h2>
+                    {error && <p className="error">{error}</p>}
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label>姓名：</label>
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>年齡：</label>
+                            <input
+                                type="number"
+                                value={age}
+                                onChange={(e) => setAge(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>興趣（用逗號分隔）：</label>
+                            <input
+                                type="text"
+                                value={interests}
+                                onChange={(e) => setInterests(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>喜歡的歌手：</label>
+                            <input
+                                type="text"
+                                value={favoriteArtist}
+                                onChange={(e) => setFavoriteArtist(e.target.value)}
+                                placeholder="輸入歌手名稱..."
+                            />
+                        </div>
+                        <div>
+                            <label>喜歡的音樂類型：</label>
+                            <select
+                                value={musicGenre}
+                                onChange={(e) => setMusicGenre(e.target.value)}
+                                required
+                            >
+                                <option value="">請選擇音樂類型</option>
+                                <option value="西洋">西洋</option>
+                                <option value="聽團">聽團</option>
+                                <option value="K-pop">K-pop</option>
+                                <option value="流行">流行</option>
+                                <option value="古典">古典</option>
+                                <option value="爵士">爵士</option>
+                                <option value="嘻哈">嘻哈</option>
+                                <option value="電子">電子</option>
+                                <option value="鄉村">鄉村</option>
+                                <option value="R&B">R&B</option>
+                            </select>
+                        </div>
+                        <button type="submit">儲存</button>
+                    </form>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<ProfileForm />);
+    </script>
+</body>
+</html>
