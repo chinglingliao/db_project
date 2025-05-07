@@ -1,8 +1,17 @@
 <!DOCTYPE html>
-<h2>登入</h2>
-<form action="/login" method="POST">
-    Email：<input type="email" name="email"><br>
-    密碼：<input type="password" name="password"><br>
-    <input type="submit" value="登入">
-</form>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登入帳號</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>登入</h2>
+
+    <form action="/login" method="POST">
+        Email：<input type="email" name="email"><br><br>
+        密碼：<input type="password" name="password"><br><br>
+        <button type="submit">登入</button>
+    </form>
+</body>
 </html>

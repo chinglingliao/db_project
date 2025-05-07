@@ -3,6 +3,7 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import firebase_admin
 from firebase_admin import credentials, firestore
+import random
 
 # Initialize Flask app
 app = Flask(__name__)
