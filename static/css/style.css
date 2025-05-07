@@ -19,6 +19,8 @@ p {
     color: #555;
 }
 
+/* --- Index Styles --- */
+
 .nav-buttons {
     display: flex;
     flex-wrap: wrap;
