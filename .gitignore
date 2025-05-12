@@ -20,3 +20,6 @@ Thumbs.db
 # Logs and env
 *.log
 .env
+
+
+serviceAccountKey.json
