@@ -6,6 +6,7 @@ __pycache__/
 venv/
 
 # Firebase credentials
+# serviceAccountKey.json
 
 # SQLite DB (optional)
 # models.db
