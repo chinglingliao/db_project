@@ -40,6 +40,7 @@
             const [bio, setBio] = useState("");
             const [interests, setInterests] = useState("");
             const [musicGenreId, setMusicGenreId] = useState("");
+            const [mbti, setMbti] = useState("");
             const [error, setError] = useState("");
 
             // TODO: 這裡 musicGenres 和 sexOrientations 應由後端渲染或 API 取得
@@ -94,6 +95,7 @@
                             bio,
                             interests: interests ? interests.split(",").map((s) => s.trim()) : [],
                             music_genre_id: parseInt(musicGenreId),
+                            mbti,
                         }),
                     });
 
@@ -211,6 +213,15 @@
                                     <option key={g.id} value={g.id}>{g.name}</option>
                                 ))}
                             </select>
+                        </div>
+                        <div>
+                            <label>MBTI：</label>
+                            <input
+                                type="text"
+                                value={mbti}
+                                onChange={(e) => setMbti(e.target.value)}
+                                placeholder="例如：INTJ、ENFP..."
+                            />
                         </div>
                         <button type="submit">儲存</button>
                     </form>

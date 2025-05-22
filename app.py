@@ -496,8 +496,8 @@ def save_profile():
         # 更新 user_profiles
         conn.execute("""
             INSERT OR REPLACE INTO user_profiles 
-            (user_id, birth_date, birth_month, birth_year, gender, sex_orientation_id, bio, height, music_genre_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            (user_id, birth_date, birth_month, birth_year, gender, sex_orientation_id, bio, height, music_genre_id, mbti)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             session["user_id"],
             data.get("birth_date"),
@@ -507,7 +507,8 @@ def save_profile():
             data.get("sex_orientation_id"),
             data.get("bio"),
             data.get("height"),
-            data.get("music_genre_id")
+            data.get("music_genre_id"),
+            data.get("mbti")
         ))
 
         # 處理興趣

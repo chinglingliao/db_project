@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     gender TEXT CHECK (gender IN ('male', 'female', 'other')),
     sex_orientation_id INTEGER,
     music_genre_id INTEGER,
+    mbti TEXT, -- 新增 mbti 欄位
     -- location TEXT, --之後可以做這個 跟那個最大距離有關
     bio TEXT,      -- 自我介紹
     height INTEGER CHECK (height > 0), -- 身高（公分）
